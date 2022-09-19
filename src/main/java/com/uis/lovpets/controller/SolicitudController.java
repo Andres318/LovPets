@@ -93,7 +93,7 @@ public class SolicitudController {
                 List<SolicitudDTO> solicitudDTOResponse = new ArrayList<>();
 
                 for (SolicitudDTO solicitudDTO:solicitudDTOList) {
-                    if (solicitudDTO.getIdPublicacion().equals(id)) {
+                    if (solicitudDTO.getIdPublicacion().equals(id) && solicitudDTO.getEstado().equals(2L)) {
                         solicitudDTOResponse.add(solicitudDTO);
                     }
                 }
@@ -105,6 +105,12 @@ public class SolicitudController {
                     return new ResponseEntity<>(solicitudDTOResponse, HttpStatus.OK);
                 }
             }
+            /*List<Solicitud> solicitudListResponse = new ArrayList<>();
+        for (Solicitud solicitud: solicitudList) {
+            if(solicitud.getEstado().equals(1L) || solicitud.getEstado().equals(2L)){
+                solicitudListResponse.add(solicitud);
+            }
+        }*/
 
         }
         catch (Exception exception) {
