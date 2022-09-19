@@ -90,18 +90,26 @@ public class PublicacionController {
             List<PublicacionDTO> publicacionesResponse = new ArrayList<>();
             
             List<PublicacionDTO> publicacionesList = this.iPublicacionService.getAll();
-            for (PublicacionDTO publicacionDTO: publicacionesList) {
-                if (tipo != null && publicacionDTO.getIdTipoMascota().equals(tipo)){
-                    publicacionesResponse.add(publicacionDTO);
-                } else if (ciudad != null && publicacionDTO.getIdCiudad().equals(ciudad)) {
-                    publicacionesResponse.add(publicacionDTO);
+
+            if (tipo != null && ciudad != null){
+                for (PublicacionDTO publicacionDTO : publicacionesList) {
+                    if (publicacionDTO.getIdTipoMascota().equals(tipo) && publicacionDTO.getIdCiudad().equals(ciudad)){
+                        publicacionesResponse.add(publicacionDTO);
+                    }
                 }
             }
+            else {
+                for (PublicacionDTO publicacionDTO : publicacionesList) {
+                     if (tipo != null && publicacionDTO.getIdTipoMascota().equals(tipo)) {
+                        publicacionesResponse.add(publicacionDTO);
+                    } else if (ciudad != null && publicacionDTO.getIdCiudad().equals(ciudad)) {
+                        publicacionesResponse.add(publicacionDTO);
+                    }
+                }
 
+            }
             return new ResponseEntity<>(publicacionesResponse, HttpStatus.OK);
-            
-            
-            
+
         }
         catch (Exception exception) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
