@@ -213,10 +213,10 @@ public class PublicacionController {
             return hashMap;
         }
 
-        if (publicacionDTO.getRaza() == null || publicacionDTO.getRaza().isEmpty() ){
+        /*if (publicacionDTO.getRaza() == null || publicacionDTO.getRaza().isEmpty() ){
             hashMap.put(false, "El parametro raza es obligatorio");
             return hashMap;
-        }
+        }*/
 
         if (publicacionDTO.getIdTipoMascota() == null ){
             hashMap.put(false, "El parametro idTipoMascota es obligatorio");
