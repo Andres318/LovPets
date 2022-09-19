@@ -1,13 +1,15 @@
 package com.uis.lovpets.controller;
 
 import com.uis.lovpets.dto.PublicacionDTO;
+import com.uis.lovpets.model.Usuario;
+import com.uis.lovpets.repository.IUsuarioRepository;
 import com.uis.lovpets.service.interfaces.IPublicacionService;
+import com.uis.lovpets.service.interfaces.ITipoMascotaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +19,8 @@ import java.util.List;
 public class PublicacionController {
 
     private IPublicacionService iPublicacionService;
+    private ITipoMascotaService iTipoMascotaService;
+    private IUsuarioRepository iUsuarioRepository;
 
 
     @GetMapping("/all")
@@ -35,7 +39,6 @@ public class PublicacionController {
     public ResponseEntity<List<PublicacionDTO>> getPublicacionesByUserId(@PathVariable(value = "id") Long id){
         try {
             List<PublicacionDTO> publicacionDTOList = this.iPublicacionService.getAll();
-            System.out.println(" " + publicacionDTOList.isEmpty() + publicacionDTOList.size());
 
             if (publicacionDTOList == null){
                 return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
@@ -220,8 +223,19 @@ public class PublicacionController {
             return hashMap;
         }
 
+        if (this.iTipoMascotaService.getOne(publicacionDTO.getIdTipoMascota())==null){
+            hashMap.put(false, "El idTipoMascota ingresado no corresponde a ningun tipo de mascota registrado");
+            return hashMap;
+        }
+
         if (publicacionDTO.getIdUsuario() == null){
             hashMap.put(false, "El parametro idUsuario es obligatorio");
+            return hashMap;
+        }
+
+        Usuario usuario = this.iUsuarioRepository.findById(publicacionDTO.getIdUsuario()).orElse(null);
+        if (usuario==null){
+            hashMap.put(false, "El idUsuario ingresado no corresponde a ningun usuario registrado");
             return hashMap;
         }
 
@@ -233,4 +247,15 @@ public class PublicacionController {
     public void setiPublicacionService(IPublicacionService iPublicacionService) {
         this.iPublicacionService = iPublicacionService;
     }
+
+    @Autowired
+    public void setiTipoMascotaService(ITipoMascotaService iTipoMascotaService) {
+        this.iTipoMascotaService = iTipoMascotaService;
+    }
+
+    @Autowired
+    public void setiUsuarioRepository(IUsuarioRepository iUsuarioRepository) {
+        this.iUsuarioRepository = iUsuarioRepository;
+    }
+
 }

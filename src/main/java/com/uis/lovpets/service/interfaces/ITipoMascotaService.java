@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ITipoMascotaService {
     List<TipoMascotaDTO> getAll();
+
+    TipoMascotaDTO getOne(Long id);
 }

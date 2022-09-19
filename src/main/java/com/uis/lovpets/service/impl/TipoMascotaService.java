@@ -23,6 +23,12 @@ public class TipoMascotaService implements ITipoMascotaService {
         return tipoMascotaList.stream().map(TipoMascotaMapper.INSTANCE::toTipoMascotaDTO).collect(Collectors.toList());
     }
 
+    @Override
+    public TipoMascotaDTO getOne(Long id){
+        TipoMascota tipoMascota = this.iTipoMascotaRepository.findById(id).orElse(null);
+        return TipoMascotaMapper.INSTANCE.toTipoMascotaDTO(tipoMascota);
+    }
+
 
     @Autowired
     public void setiTipoMascotaRepository(ITipoMascotaRepository iTipoMascotaRepository) {
