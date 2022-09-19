@@ -19,7 +19,7 @@ public class PublicacionService implements IPublicacionService {
 
     @Override
     public List<PublicacionDTO> getAll(){
-        List<Publicacion> publicacionList= this.iPublicacionRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        List<Publicacion> publicacionList= this.iPublicacionRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
         return publicacionList.stream().map(PublicacionMapper.INSTANCE::toPublicacionDTO).collect(Collectors.toList());
     }
 
