@@ -26,13 +26,13 @@ public class SolicitudService implements ISolicitudService {
     public List<SolicitudDTO> getAll(){
 
         List<Solicitud> solicitudList = this.iSolicitudRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-        List<Solicitud> solicitudListResponse = new ArrayList<>();
+        /*List<Solicitud> solicitudListResponse = new ArrayList<>();
         for (Solicitud solicitud: solicitudList) {
             if(solicitud.getEstado().equals(1L) || solicitud.getEstado().equals(2L)){
                 solicitudListResponse.add(solicitud);
             }
-        }
-        return solicitudListResponse.stream().map(SolicitudMapper.INSTANCE::toSolicitudDTO).collect(Collectors.toList());
+        }*/
+        return solicitudList.stream().map(SolicitudMapper.INSTANCE::toSolicitudDTO).collect(Collectors.toList());
 
     }
 
