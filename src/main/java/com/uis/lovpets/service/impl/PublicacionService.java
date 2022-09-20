@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,13 @@ public class PublicacionService implements IPublicacionService {
     @Override
     public List<PublicacionDTO> getAll(){
         List<Publicacion> publicacionList= this.iPublicacionRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-        return publicacionList.stream().map(PublicacionMapper.INSTANCE::toPublicacionDTO).collect(Collectors.toList());
+        List<Publicacion> publicacionListResponse = new ArrayList<>();
+        for (Publicacion publicacion: publicacionList ) {
+            if (publicacion.getEstado().equals(1L)){
+                publicacionListResponse.add(publicacion);
+            }
+        }
+        return publicacionListResponse.stream().map(PublicacionMapper.INSTANCE::toPublicacionDTO).collect(Collectors.toList());
     }
 
     @Override
