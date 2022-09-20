@@ -46,6 +46,9 @@ public class Publicacion implements Serializable {
     @Column(name = "observaciones")
     private String observaciones;
 
+    @Column(name = "estado")
+    private Long estado;
+    
     @Column(name = "id_tipo_mascota")
     private Long idTipoMascota;
 

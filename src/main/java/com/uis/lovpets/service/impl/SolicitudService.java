@@ -2,6 +2,7 @@ package com.uis.lovpets.service.impl;
 
 import com.uis.lovpets.dto.SolicitudDTO;
 import com.uis.lovpets.mapper.SolicitudMapper;
+import com.uis.lovpets.model.Publicacion;
 import com.uis.lovpets.model.Solicitud;
 import com.uis.lovpets.repository.IPublicacionRepository;
 import com.uis.lovpets.repository.ISolicitudRepository;
@@ -43,6 +44,17 @@ public class SolicitudService implements ISolicitudService {
         return SolicitudMapper.INSTANCE.toSolicitudDTO(solicitud);
     }
 
+    @Override
+    public Boolean checkUserSolicitud(Long userId){
+        List<Solicitud> solicitudList = this.iSolicitudRepository.findAll();
+        for (Solicitud solicitud: solicitudList) {
+            if (solicitud.getIdUsuario().equals(userId)){
+                return Boolean.TRUE;
+            }
+        }
+        return Boolean.FALSE;
+    }
+
 
     @Override
     public Boolean crearSolicitud(SolicitudDTO solicitudDTO){
@@ -72,6 +84,11 @@ public class SolicitudService implements ISolicitudService {
 
             solicitud.setEstado(1L);
             this.iSolicitudRepository.save(solicitud);
+
+            Publicacion publicacion = this.iPublicacionRepository.findById(solicitud.getIdPublicacion()).orElse(null);
+            publicacion.setEstado(0L);
+            this.iPublicacionRepository.save(publicacion);
+
 
             Long idPublicacion = solicitud.getIdPublicacion();
             List<Solicitud> solicitudesDescartadas = new ArrayList<>();

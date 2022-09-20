@@ -33,6 +33,7 @@ public class PublicacionService implements IPublicacionService {
     public Boolean crearPublicacion(PublicacionDTO publicacionDTO){
 
         Publicacion publicacion = PublicacionMapper.INSTANCE.toPublicacion(publicacionDTO);
+        publicacion.setEstado(1L);
         this.iPublicacionRepository.save(publicacion);
 
         return Boolean.TRUE;

@@ -144,10 +144,16 @@ public class SolicitudController {
 
         try {
 
+            Boolean booleanCheck = this.iSolicitudService.checkUserSolicitud(solicitudDTO.getIdUsuario());
+            if (booleanCheck){
+                return new ResponseEntity<>("Error: El usuario ya cre[o una solicitud para esta pulicacion", HttpStatus.CONFLICT);
+            }
+
             PublicacionDTO publicacionDTO = this.iPublicacionService.getOne(solicitudDTO.getIdPublicacion());
             if (solicitudDTO.getIdUsuario().equals(publicacionDTO.getIdUsuario())){
                 return new ResponseEntity<>("Error: El usuario que hace la solicitud no puede ser el mismo usuario que hace la publicación", HttpStatus.CONFLICT);
             }
+
 
             HashMap<Boolean, String> hashMap = this.validaciones(solicitudDTO);
             if (hashMap.containsKey(false)){
