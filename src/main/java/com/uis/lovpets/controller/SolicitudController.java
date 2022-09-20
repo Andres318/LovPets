@@ -146,7 +146,7 @@ public class SolicitudController {
 
             Boolean booleanCheck = this.iSolicitudService.checkUserSolicitud(solicitudDTO.getIdUsuario(), solicitudDTO.getIdPublicacion());
             if (booleanCheck){
-                return new ResponseEntity<>("Error: El usuario ya cre[o una solicitud para esta pulicacion", HttpStatus.CONFLICT);
+                return new ResponseEntity<>("Error: El usuario ya creo una solicitud para esta pulicacion", HttpStatus.CONFLICT);
             }
 
             PublicacionDTO publicacionDTO = this.iPublicacionService.getOne(solicitudDTO.getIdPublicacion());
