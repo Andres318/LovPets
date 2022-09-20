@@ -5,6 +5,8 @@ import com.uis.lovpets.model.Usuario;
 import com.uis.lovpets.repository.IUsuarioRepository;
 import com.uis.lovpets.service.interfaces.IPublicacionService;
 import com.uis.lovpets.service.interfaces.ITipoMascotaService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import java.util.List;
 @RequestMapping("/publicacion")
 public class PublicacionController {
 
+    Logger logger = LoggerFactory.getLogger(SolicitudController.class);
+
     private IPublicacionService iPublicacionService;
     private ITipoMascotaService iTipoMascotaService;
     private IUsuarioRepository iUsuarioRepository;
@@ -30,6 +34,7 @@ public class PublicacionController {
             return  new ResponseEntity<>(publicacionDTOS, HttpStatus.OK);
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -60,6 +65,7 @@ public class PublicacionController {
             }
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -78,6 +84,7 @@ public class PublicacionController {
             }
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -115,6 +122,7 @@ public class PublicacionController {
 
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -134,6 +142,7 @@ public class PublicacionController {
         }
 
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -156,6 +165,7 @@ public class PublicacionController {
 
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -173,6 +183,7 @@ public class PublicacionController {
             return new ResponseEntity<>(aBoolean, HttpStatus.OK);
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

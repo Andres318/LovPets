@@ -6,6 +6,8 @@ import com.uis.lovpets.model.Usuario;
 import com.uis.lovpets.repository.IUsuarioRepository;
 import com.uis.lovpets.service.interfaces.IPublicacionService;
 import com.uis.lovpets.service.interfaces.ISolicitudService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/solicitud")
 public class SolicitudController {
+
+    Logger logger = LoggerFactory.getLogger(SolicitudController.class);
 
     private ISolicitudService iSolicitudService;
     private IPublicacionService iPublicacionService;
@@ -35,6 +39,7 @@ public class SolicitudController {
 
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -71,6 +76,7 @@ public class SolicitudController {
             }
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -114,6 +120,7 @@ public class SolicitudController {
 
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -134,6 +141,7 @@ public class SolicitudController {
 
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -170,6 +178,7 @@ public class SolicitudController {
 
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -201,6 +210,7 @@ public class SolicitudController {
 
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -222,6 +232,7 @@ public class SolicitudController {
 
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -244,6 +255,7 @@ public class SolicitudController {
 
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -266,6 +278,7 @@ public class SolicitudController {
 
         }
         catch (Exception exception) {
+            logger.error(String.valueOf(exception));
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
