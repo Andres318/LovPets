@@ -20,7 +20,7 @@ public class PublicacionService implements IPublicacionService {
 
     @Override
     public List<PublicacionDTO> getAll(){
-        List<Publicacion> publicacionList= this.iPublicacionRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        List<Publicacion> publicacionList = this.iPublicacionRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
         List<Publicacion> publicacionListResponse = new ArrayList<>();
         for (Publicacion publicacion: publicacionList ) {
             if (publicacion.getEstado().equals(1L)){

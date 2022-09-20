@@ -193,7 +193,7 @@ public class PublicacionController {
             return hashMap;
         }
 
-        if (publicacionDTO.getEdad() == null ){
+        /*if (publicacionDTO.getEdad() == null ){
             hashMap.put(false, "El parametro edad es obligatorio");
             return hashMap;
         }
@@ -207,7 +207,7 @@ public class PublicacionController {
             hashMap.put(false, "El parametro unidadEdad es obligatorio");
             return hashMap;
         }
-
+*/
         if (publicacionDTO.getGenero() == null || publicacionDTO.getGenero().isEmpty() ){
             hashMap.put(false, "El parametro genero es obligatorio");
             return hashMap;
