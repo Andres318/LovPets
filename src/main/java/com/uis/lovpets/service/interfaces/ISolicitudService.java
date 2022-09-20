@@ -9,7 +9,7 @@ public interface ISolicitudService {
 
     SolicitudDTO getOne(Long id);
 
-    Boolean checkUserSolicitud(Long userId);
+    Boolean checkUserSolicitud(Long userId, Long publicacionId);
 
     Boolean crearSolicitud(SolicitudDTO solicitudDTO);
 

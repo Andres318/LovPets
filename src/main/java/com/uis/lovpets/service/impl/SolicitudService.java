@@ -45,10 +45,10 @@ public class SolicitudService implements ISolicitudService {
     }
 
     @Override
-    public Boolean checkUserSolicitud(Long userId){
+    public Boolean checkUserSolicitud(Long userId, Long publicacionId){
         List<Solicitud> solicitudList = this.iSolicitudRepository.findAll();
         for (Solicitud solicitud: solicitudList) {
-            if (solicitud.getIdUsuario().equals(userId)){
+            if (solicitud.getIdUsuario().equals(userId) && solicitud.getIdPublicacion().equals(publicacionId)){
                 return Boolean.TRUE;
             }
         }
